@@ -1,0 +1,9 @@
+{
+  "name": "tan-da-ai",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Tản Đà AI – bản MVP: trợ lý AI cho giáo viên và học sinh, dùng Claude API",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=18" }
+}

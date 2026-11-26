@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tản Đà AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@400;500;600&family=Tinos:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
+  <symbol id="i-speaker" viewBox="0 0 24 24"><path d="M5 9v6h4l5 4V5L9 9H5z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19.5 6a9 9 0 0 1 0 12"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12l16-8-6 16-2-7z"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6zM14 3v4h4M9 12h6M9 16h6"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16zM13.5 6.5l4 4"/></symbol>
+  <symbol id="i-palette" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4M7 8h6M7 11h4"/></symbol>
+  <symbol id="i-exam" viewBox="0 0 24 24"><path d="M7 3h10v18H7zM10 7h4M10 11h4M10 15h2"/><path d="M4 7h3M4 11h3M4 15h3"/></symbol>
+  <symbol id="i-bot" viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 4v4M9 13h0M15 13h0M9 16h6"/><circle cx="12" cy="3.5" r="1"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6h6l2 2h10v11H3z"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20a6 6 0 0 0-4-5.6"/></symbol>
+  <symbol id="i-sigma" viewBox="0 0 24 24"><path d="M18 5H6l6 7-6 7h12"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></symbol>
+  <symbol id="i-brain" viewBox="0 0 24 24"><path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 3 3h1V4zM15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-3 3h-1V4z"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 18a8 8 0 1 1 16 0M12 18l4-6"/></symbol>
+  <symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 20V9M7 14l5-5 5 5M5 4h14"/></symbol>
+  <symbol id="i-save" viewBox="0 0 24 24"><path d="M5 4h11l3 3v13H5zM8 4v5h7V4M8 20v-6h8v6"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 5l12 7-12 7z"/></symbol>
+  <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24"><path d="M15 4h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4M10 16l-4-4 4-4M6 12h10"/></symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/></symbol>
+  <symbol id="i-tree" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="5" r="2"/><circle cx="20" cy="5" r="2"/><circle cx="4" cy="19" r="2"/><circle cx="20" cy="19" r="2"/><path d="M6 6l4 4M18 6l-4 4M6 18l4-4M18 18l-4-4"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h12l-2 4 2 4H5"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></symbol>
+
+  <symbol id="i-tanda" viewBox="0 0 24 24"><path d="M2.5 16.5l5-9 3 5 2-3 5 7z"/><path d="M2 20q2.5-2 5 0t5 0 5 0 5 0"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
+  <symbol id="i-wave" viewBox="0 0 24 24"><path d="M3 12h2M7 8v8M11 5v14M15 9v6M19 7v10M21 12h0"/></symbol>
+  <symbol id="i-translate" viewBox="0 0 24 24"><path d="M3 5h10M8 3v2M5 5c1 4 4 7 7 8M11 5c-1 4-4 7-7 8M13 21l4-9 4 9M14.5 18h5"/></symbol>
+</defs></svg>
+
+<section id="login" aria-label="Đăng nhập">
+  <div class="login-side">
+    <div class="brandmark"><div class="logo"><svg class="i"><use href="#i-tanda"/></svg></div><span style="color:#fff">Tản Đà AI</span></div>
+    <div>
+      <h1>Trợ lý AI cho cả giáo viên và học sinh</h1>
+      <p class="lede">Soạn giáo án, ra đề, thiết kế bài giảng trong vài phút. Học sinh học Toán, Tin học, Tiếng Anh và môn Trí tuệ nhân tạo với gia sư AI. Nhà trường kiểm soát việc dùng AI.</p>
+    </div>
+    <div class="modgrid">
+      <div><svg class="i"><use href="#i-doc"/></svg><span><b>Soạn &amp; sửa tài liệu</b>Giáo án 5512, phiếu, đề</span></div>
+      <div><svg class="i"><use href="#i-bot"/></svg><span><b>Agent giáo viên</b>Giao mục tiêu, AI tự làm</span></div>
+      <div><svg class="i"><use href="#i-sigma"/></svg><span><b>Dạy học 4 môn</b>Anh, Toán, Tin, Trí tuệ nhân tạo</span></div>
+      <div><svg class="i"><use href="#i-shield"/></svg><span><b>Quản trị AI</b>Báo cáo, chính sách, hạn mức (Ban giám hiệu)</span></div>
+    </div>
+    <div class="small" style="color:var(--rail-muted)">Made by <b style="color:#fff">Mazentas</b></div>
+  </div>
+  <div class="login-main">
+    <div class="login-card" role="form" aria-label="Đăng nhập">
+      <div class="grid" style="gap:6px"><div class="eyebrow">Trường THPT Tản Đà (bản demo)</div><h2 style="font-size:1.5rem">Đăng nhập</h2></div>
+      <div class="seg" role="group" aria-label="Loại tài khoản">
+        <button type="button" id="segHS" aria-pressed="true">Học sinh</button>
+        <button type="button" id="segNV" aria-pressed="false">Giáo viên</button>
+      </div>
+      <div class="field"><label for="loginCode" id="codeLabel">Mã học sinh</label>
+        <input id="loginCode" class="code-input" autocomplete="username" placeholder="VD: HS26-0915">
+        <div class="hint" id="codeHint">Mã in trên thẻ học sinh, do phòng giáo vụ cấp.</div></div>
+      <div class="field"><label for="loginPw">Mật khẩu</label><input id="loginPw" type="password" autocomplete="current-password" placeholder="••••••"></div>
+      <div class="err" id="loginErr" role="alert"></div>
+      <button class="btn primary" type="button" id="loginBtn" style="padding:12px">Đăng nhập</button>
+      <p class="small muted">Quên mật khẩu? Liên hệ giáo viên chủ nhiệm hoặc phòng giáo vụ.</p>
+      <div class="demo-acc">
+        <div class="row between"><b>Tài khoản demo</b><span class="muted xs">mật khẩu: 123456</span></div>
+        <button type="button" data-demo="HS26-0915"><span>Học sinh · Nguyễn Minh Anh, 11A1</span><code>HS26-0915</code></button>
+        <button type="button" data-demo="GV-0108"><span>Giáo viên Toán · Thầy Lê Văn Nam, CN 10A1</span><code>GV-0108</code></button>
+        <button type="button" data-demo="GV-0042"><span>Giáo viên Tiếng Anh · Cô Trần Thu Hạnh, CN 11A1</span><code>GV-0042</code></button>
+        <button type="button" data-demo="NV-0215"><span>Nhân viên văn phòng · Chị Đỗ Thu Trang</span><code>NV-0215</code></button>
+        <button type="button" data-demo="QT-0001"><span>Ban giám hiệu / quản lý · Cô Phạm Thị Lan</span><code>QT-0001</code></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="app" hidden>
+  <aside class="rail">
+    <div class="brandmark"><div class="logo"><svg class="i"><use href="#i-tanda"/></svg></div><span>Tản Đà AI</span></div>
+    <nav class="nav" id="nav" aria-label="Điều hướng"></nav>
+    <div class="who">
+      <div class="person"><div class="avatar" id="whoAvatar"></div><div><div class="name" id="whoName"></div><div class="meta" id="whoMeta"></div></div></div>
+      <button class="btn sm" id="logout"><svg class="i"><use href="#i-out"/></svg><span>Đăng xuất</span></button>
+    </div>
+    <div class="credit xs" style="color:var(--rail-muted);padding:0 6px">Made by <b style="color:#fff">Mazentas</b></div>
+  </aside>
+  <div class="main">
+    <header class="topbar">
+      <div style="min-width:0"><div class="eyebrow" id="crumb"></div><h1 id="viewTitle"></h1></div>
+      <div class="status" style="align-items:center"><span class="chip" id="clockChip"></span><span class="chip" id="aiChip"></span><button class="btn sm accent" id="asstBtn" hidden aria-expanded="false" aria-controls="assist"><svg class="i"><use href="#i-spark"/></svg>Trợ lý AI</button></div>
+    </header>
+    <main id="view"></main>
+  </div>
+</div>
+<aside class="assist" id="assist" hidden aria-label="Trợ lý AI">
+  <div class="as-head"><div class="row between" style="flex-wrap:nowrap"><div class="row" style="gap:8px;flex-wrap:nowrap"><span class="logo" style="width:28px;height:28px;border-radius:8px"><svg class="i"><use href="#i-spark"/></svg></span><b>Trợ lý AI</b></div>
+    <div class="row" style="gap:2px;flex-wrap:nowrap"><button class="btn sm ghost" id="asNew" title="Cuộc trò chuyện mới">Mới</button><button class="btn sm ghost" id="asClose" aria-label="Đóng trợ lý"><svg class="i"><use href="#i-x"/></svg></button></div></div>
+    <div class="as-ctx" id="asCtx"></div></div>
+  <div class="as-log" id="asLog" aria-live="polite"></div>
+  <div class="as-foot"><div id="asGate"></div><div class="pills" id="asSug"></div>
+    <div class="composer" style="border:0;padding:0"><textarea id="asIn" rows="1" placeholder="Nhắn trợ lý…"></textarea><button class="btn primary" id="asSend" aria-label="Gửi"><svg class="i"><use href="#i-send"/></svg></button></div></div>
+</aside>
+<div id="selbar" hidden role="toolbar" aria-label="AI với đoạn đã chọn"></div>
+<div class="toast" id="toast" hidden></div>
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>
