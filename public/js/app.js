@@ -9,6 +9,7 @@ import "./student.js";
 import "./english.js";
 import "./teacher.js";
 import "./admin.js";
+import "./computer.js";
 
 /* Khởi động: đăng nhập, menu, thanh trạng thái */
 let loginKind="HS";
@@ -39,7 +40,7 @@ function navFor(){
   const nav=[["","Công việc"],["t-home","Tổng quan","home"],["","Soạn với AI"],["doc","Tài liệu","doc"]];
   if (can("teach")) nav.push(["design","Slide bài giảng","palette"],["exam","Đề kiểm tra","exam"],["","Dạy học"],["class","Lớp học & 4 môn","users"],["hw","Chấm bài về nhà","edit"]);
   if (can("teach")) nav.push(["","Quản lý nội bộ"],["a-leave","Xin nghỉ & dạy thay","clock"],["a-profile","Tài liệu tổ","folder"]);
-  if (can("teach")) nav.push(["","Tự động hóa AI"],["a-skills","Kỹ năng của AI","bulb"],["a-flows","Quy trình nhiều bước","gauge"]);
+  if (can("teach")) nav.push(["","Tự động hóa AI"],["a-skills","Kỹ năng của AI","bulb"],["a-flows","Quy trình nhiều bước","gauge"],["t-computer","Điều khiển máy tính","bot"]);
   if (can("admin")) nav.push(["","Quản trị AI"],["a-dash","Báo cáo sử dụng AI","chart"],["a-policy","Chính sách sử dụng","shield"],["a-classify","Thử phân loại","filter"],["a-quota","Model & hạn mức","gauge"]);
   return nav;
 }

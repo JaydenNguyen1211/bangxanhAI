@@ -7,6 +7,7 @@ const fs = require("fs");
 const path = require("path");
 try { if (fs.existsSync(path.join(__dirname, ".env"))) process.loadEnvFile(path.join(__dirname, ".env")); } catch (e) { console.error("Không đọc được .env:", e.message); }
 const CFG = require("./config");
+const { runComputerTask } = require("./computer");
 
 const PUBLIC = path.join(__dirname, "public");
 const MIME = { ".html":"text/html; charset=utf-8", ".js":"text/javascript; charset=utf-8", ".css":"text/css; charset=utf-8", ".svg":"image/svg+xml", ".png":"image/png", ".ico":"image/x-icon", ".json":"application/json" };
@@ -206,6 +207,49 @@ async function handleClaude(req, res, body){
   res.end();
 }
 
+/* ---------------- /api/computer: Claude điều khiển máy tính (computer.js) ---------------- */
+// Chỉ cho chính máy chạy server: thao tác chuột/phím diễn ra trên máy này, nên không cho máy khác
+// trong mạng LAN (vd máy học sinh) ra lệnh. Kiểm tra 4 lớp:
+//   1. kết nối đến từ 127.0.0.1/::1   2. Host là localhost (chặn DNS rebinding)
+//   3. Origin (nếu có) là trang của chính server   4. header riêng x-tanda-computer → trang web lạ
+//      không gửi được mà không qua CORS preflight (server không trả lời preflight nên bị chặn).
+let computerBusy = false;
+function isLocalRequest(req){
+  const ip = req.socket.remoteAddress || "";
+  if (!["127.0.0.1", "::1", "::ffff:127.0.0.1"].includes(ip)) return false;
+  const host = String(req.headers.host || "");
+  if (!new RegExp("^(localhost|127\\.0\\.0\\.1|\\[::1\\]):" + CFG.PORT + "$").test(host)) return false;
+  const origin = req.headers.origin;
+  if (origin && origin !== "http://" + host) return false;
+  return req.headers["x-tanda-computer"] === "1";
+}
+async function handleComputer(req, res, body){
+  if (!isLocalRequest(req)) return json(res, 403, { error:"forbidden", message:"Chỉ dùng được trên chính máy chạy server (mở http://localhost:" + CFG.PORT + ")." });
+  if (!CFG.ANTHROPIC_API_KEY) return json(res, 503, { error:"missing_key", message:"Chưa có API key." });
+  if (process.platform !== "win32") return json(res, 501, { error:"unsupported", message:"Hiện chỉ hỗ trợ Windows." });
+  let p; try { p = JSON.parse(body); } catch { return json(res, 400, { error:"bad_request" }); }
+  const task = clip(p.task, 2000).trim();
+  if (!task) return json(res, 400, { error:"bad_request", message:"Thiếu nội dung việc cần làm." });
+  if (BLOCK.test(task)) { usage.blocked++; return json(res, 451, { error:"blocked", message:"Nội dung không phù hợp môi trường học đường." }); }
+  if (computerBusy) return json(res, 409, { error:"busy", message:"AI đang điều khiển máy cho một việc khác." });
+
+  computerBusy = true;
+  const ctl = new AbortController();
+  // Trình duyệt bấm "Dừng" (hủy fetch) hoặc đóng tab → dừng ngay sau thao tác đang làm.
+  res.on("close", () => { if (!res.writableEnded) ctl.abort(); });
+  res.writeHead(200, { "content-type":"application/x-ndjson; charset=utf-8", "cache-control":"no-cache" });
+  const emit = e => { if (!res.writableEnded) res.write(JSON.stringify(e) + "\n"); };
+  try {
+    await runComputerTask(task, { emit, signal: ctl.signal, onCall: () => { usage.calls++; usage.byTier.computer = (usage.byTier.computer||0) + 1; } });
+  } catch (e) {
+    if (ctl.signal.aborted) emit({ type:"done", text:"Đã dừng theo yêu cầu." });
+    else { console.error("[computer]", e.message); emit({ type:"error", text: e.message }); }
+  } finally {
+    computerBusy = false;
+    res.end();
+  }
+}
+
 /* ---------------- tiện ích ---------------- */
 function json(res, code, obj){ res.writeHead(code, { "content-type":"application/json; charset=utf-8" }); res.end(JSON.stringify(obj)); }
 function readBody(req){ return new Promise((ok, fail) => { let n = 0; const parts = []; req.on("data", c => { n += c.length; if (n > CFG.MAX_BODY_BYTES){ fail(new Error("too_large")); req.destroy(); } else parts.push(c); }); req.on("end", () => ok(Buffer.concat(parts).toString("utf8"))); req.on("error", fail); }); }
@@ -227,6 +271,7 @@ http.createServer(async (req, res) => {
     if (req.url.startsWith("/api/homework")) return handleHomework(req, res, req.method === "POST" ? await readBody(req) : "");
     if (req.url.startsWith("/api/senddoc")) return handleSendDoc(req, res, req.method === "POST" ? await readBody(req) : "");
     if (req.url === "/api/claude" && req.method === "POST") return handleClaude(req, res, await readBody(req));
+    if (req.url === "/api/computer" && req.method === "POST") return handleComputer(req, res, await readBody(req));
     if (req.method === "GET") return serveStatic(req, res);
     res.writeHead(405); res.end();
   } catch (e) { console.error(e); if (!res.headersSent) json(res, 500, { error:"server_error" }); else res.end(); }

@@ -38,6 +38,20 @@ module.exports = {
   THINKING: { agent: { type: "adaptive", display: "summarized" } },
   THINKING_EFFORT: { agent: "medium" },   // low|medium|high|xhigh|max — độ sâu suy nghĩ, càng cao càng tốn token
   THINKING_HEADROOM: 2000,                  // cộng thêm vào max_tokens khi có thinking, để suy nghĩ không ăn hết chỗ của câu trả lời/ACTIONS
+  // Điều khiển máy tính (computer use, computer.js): Claude chụp màn hình và tự bấm chuột/gõ phím trên
+  // CHÍNH máy chạy server. Chỉ nhận yêu cầu từ trình duyệt trên máy này (localhost), xem server.js.
+  // Mỗi bước gửi kèm 1 ảnh chụp màn hình → tốn token hơn chat thường; MAX_STEPS chặn chi phí mỗi lần chạy.
+  COMPUTER: {
+    MODEL: "claude-opus-5-5",       // Opus 5.5 chỉ nhận công cụ computer_toolset_20260801
+    EFFORT: "medium",               // low|medium|high|xhigh|max
+    MAX_TOKENS: 16000,
+    MAX_STEPS: 25,                  // số lượt gọi Claude tối đa cho 1 việc
+    MAX_LONG_EDGE: 1280,            // ảnh chụp thu nhỏ về cạnh dài ≤ 1280px (1920×1080 → 1280×720)
+    MAX_PIXELS: 1150000,
+    SETTLE_MS: 400,                 // chờ giao diện cập nhật sau mỗi thao tác
+    MAX_WAIT_SEC: 30                // trần cho thao tác wait / hold_key
+  },
+
   RATE_LIMIT: { windowSec: 60, maxRequests: 30 },    // mỗi địa chỉ IP
   MAX_BODY_BYTES: 6 * 1024 * 1024                     // cho phép gửi ảnh đề bài
 };
